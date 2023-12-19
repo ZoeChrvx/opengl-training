@@ -7,10 +7,6 @@ bool Game::initialize()
 
 	int windowWidth = window.getWidth();
 	int windowHeight = window.getHeight();
-	topWall = { 0, 0, static_cast<float>(windowWidth), wallThickness };
-	bottomWall = { 0, windowHeight - wallThickness, static_cast<float>(windowWidth), wallThickness };
-	rightWall = { windowWidth - wallThickness, 0, wallThickness, static_cast<float>(windowHeight) };
-
 	return isWindowInit && isRendererInit; // Return bool && bool && bool ...to detect error
 }
 
