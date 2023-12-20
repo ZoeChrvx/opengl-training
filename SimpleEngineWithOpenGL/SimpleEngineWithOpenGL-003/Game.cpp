@@ -1,7 +1,13 @@
 #include "Game.h"
+#include "Actor.h"
+#include "SpriteComponent.h"
+#include "AnimSpriteComponent.h"
 #include "Timer.h"
 #include "Assets.h"
-#include "Component.h"
+#include "BackgroundSpriteComponent.h"
+#include "DrawCircleComponent.h"
+
+#include<algorithm>
 
 bool Game::initialize()
 {
@@ -13,12 +19,15 @@ bool Game::initialize()
 
 void Game::load()
 {
-	Assets::loadTexture(renderer, "Res\\Ship01.png", "ship01");
+	ball = new Actor();
+	ballCircle = new DrawCircleComponent(ball, 50);
+	ball->setPosition(Vector2{ 100, 100 });
+
+	
 }
 
 void Game::processInput()
 {
-	// SDL Event
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{
@@ -68,7 +77,8 @@ void Game::update(float dt)
 void Game::render()
 {
 	renderer.beginDraw();
-
+	renderer.draw();
+	ballCircle->draw(renderer);
 	renderer.endDraw();
 }
 

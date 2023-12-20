@@ -11,6 +11,6 @@ Component::~Component() {
 	owner.removeComponent(this);
 }
 
-void Component::updateOrder(float dt) {
+void Component::update(float dt) {
 
 }

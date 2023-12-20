@@ -4,7 +4,10 @@
 #include "Renderer.h"
 #include "Vector2.h"
 #include "Actor.h"
+#include "SpriteComponent.h"
 using std::vector;
+
+class DrawCircleComponent;
 
 class Game
 {
@@ -20,10 +23,14 @@ public:
 	Game(Game&&) = delete;
 	Game& operator=(Game&&) = delete;
 
+	Renderer& getRenderer() {
+		return renderer;
+	}
+
 private:
 	Game() :
 		isRunning(true),
-		isUpdatingActors(false){}	
+		isUpdatingActors(false) {}
 
 public:
 	bool initialize();
@@ -47,5 +54,8 @@ private:
 	bool isUpdatingActors;
 	vector<Actor*> actors;
 	vector<Actor*> pendingActors;
+
+	Actor* ball{ nullptr };
+	DrawCircleComponent* ballCircle{ nullptr };
 };
 
