@@ -13,6 +13,7 @@ public:
 	void drawRect(Rectangle& rect);
 	void endDraw();
 
+	inline SDL_Renderer* toSDLRenderer() const { return SDLRenderer; }
 	void close();
 
 private:

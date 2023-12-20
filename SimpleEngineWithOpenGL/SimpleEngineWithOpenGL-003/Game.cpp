@@ -1,30 +1,19 @@
 #include "Game.h"
+#include "Timer.h"
+#include "Assets.h"
+#include "Component.h"
 
 bool Game::initialize()
 {
 	bool isWindowInit = window.initialize();
 	bool isRendererInit = renderer.initialize(window);
 
-	int windowWidth = window.getWidth();
-	int windowHeight = window.getHeight();
 	return isWindowInit && isRendererInit; // Return bool && bool && bool ...to detect error
 }
 
-void Game::loop()
+void Game::load()
 {
-	while (isRunning)
-	{
-		processInput();
-		update();
-		render();
-	}
-}
-
-void Game::close()
-{
-	renderer.close();
-	window.close();
-	SDL_Quit();
+	Assets::loadTexture(renderer, "Res\\Ship01.png", "ship01");
 }
 
 void Game::processInput()
@@ -40,32 +29,104 @@ void Game::processInput()
 			break;
 		}
 	}
-	// Keyboard state
 	const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
-	// Escape: quit game
 	if (keyboardState[SDL_SCANCODE_ESCAPE])
 	{
 		isRunning = false;
 	}
 }
 
-void Game::update()
+void Game::update(float dt)
 {
+	isUpdatingActors = true;
+	for (auto actor : actors)
+	{
+		actor->update(dt);
+	}
+	isUpdatingActors = false;
+
+	for (auto pendingActor : pendingActors)
+	{
+		actors.emplace_back(pendingActor);
+	}
+	pendingActors.clear();
+
+	vector<Actor*> deadActors;
+	for (auto actor : actors)
+	{
+		if (actor->getState() == Actor::ActorState::Dead)
+		{
+			deadActors.emplace_back(actor);
+		}
+	}
+	for (auto deadActor : deadActors)
+	{
+		delete deadActor;
+	}
 }
 
 void Game::render()
 {
 	renderer.beginDraw();
 
-	renderer.drawRect(topWall);
-	renderer.drawRect(bottomWall);
-	renderer.drawRect(rightWall);
-
-	Rectangle ballRect = { ballPos.x - ballSize / 2, ballPos.y - ballSize / 2, ballSize, ballSize };
-	renderer.drawRect(ballRect);
-
-	Rectangle paddleRect = { paddlePos.x - paddleWidth / 2, paddlePos.y - paddleHeight / 2, paddleWidth, paddleHeight };
-	renderer.drawRect(paddleRect);
-
 	renderer.endDraw();
+}
+
+void Game::loop()
+{
+	Timer timer;
+	float dt = 0;
+	while (isRunning)
+	{
+		float dt = timer.computeDeltaTime() / 1000.0f;
+		processInput();
+		update(dt);
+		render();
+		timer.delayTime();
+	}
+}
+
+void Game::unload()
+{
+	while (!actors.empty())
+	{
+		delete actors.back();
+	}
+
+	Assets::clear();
+}
+
+void Game::close()
+{
+	renderer.close();
+	window.close();
+	SDL_Quit();
+}
+
+void Game::addActor(Actor* actor)
+{
+	if (isUpdatingActors)
+	{
+		pendingActors.emplace_back(actor);
+	}
+	else
+	{
+		actors.emplace_back(actor);
+	}
+}
+
+void Game::removeActor(Actor* actor)
+{
+	auto iter = std::find(begin(pendingActors), end(pendingActors), actor);
+	if (iter != end(pendingActors))
+	{
+		std::iter_swap(iter, end(pendingActors) - 1);
+		pendingActors.pop_back();
+	}
+	iter = std::find(begin(actors), end(actors), actor);
+	if (iter != end(actors))
+	{
+		std::iter_swap(iter, end(actors) - 1);
+		actors.pop_back();
+	}
 }
