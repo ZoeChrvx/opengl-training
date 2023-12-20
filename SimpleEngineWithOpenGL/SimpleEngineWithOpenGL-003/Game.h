@@ -56,6 +56,5 @@ private:
 	vector<Actor*> pendingActors;
 
 	Actor* ball{ nullptr };
-	DrawCircleComponent* ballCircle{ nullptr };
 };
 

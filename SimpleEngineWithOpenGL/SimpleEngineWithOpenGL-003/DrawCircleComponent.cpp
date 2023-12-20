@@ -2,13 +2,17 @@
 #include "Actor.h"
 #include <SDL.h>
 #include "Renderer.h"
+#include "Game.h"
 
 DrawCircleComponent::DrawCircleComponent(Actor* ownerP, int radiusP) :
 	Component(ownerP),
 	radius{ radiusP } {
-
+	owner.getGame().getRenderer().addCircle(this);
 }
 
+DrawCircleComponent::~DrawCircleComponent() {
+	owner.getGame().getRenderer().removeCircle(this);
+}
 void DrawCircleComponent::draw(Renderer& renderer) {
 	drawCircle(renderer);
 }
@@ -18,7 +22,6 @@ void DrawCircleComponent::drawCircle(Renderer& renderer) {
 	const int centreX = owner.getPosition().x;
 	const int centreY = owner.getPosition().y;
 
-	SDL_SetRenderDrawColor(SDLRenderer, 120, 120, 255, 255);
 	
 	const int32_t diameter = (radius * 2);
 
@@ -27,6 +30,8 @@ void DrawCircleComponent::drawCircle(Renderer& renderer) {
 	int32_t tx = 1;
 	int32_t ty = 1;
 	int32_t error = (tx - diameter);
+
+	SDL_SetRenderDrawColor(SDLRenderer, 120, 120, 255, 255);
 
 	while (x >= y) {
 		SDL_RenderDrawPoint(SDLRenderer, centreX + x, centreY - y);

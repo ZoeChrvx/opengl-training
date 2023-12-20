@@ -6,6 +6,9 @@
 #include "Actor.h"
 #include "SpriteComponent.h"
 
+class SpriteComponent;
+class DrawCircleComponent;
+
 class Renderer
 {
 public:
@@ -33,10 +36,16 @@ public:
 	void drawSprites();
 	void drawSprite(const Actor& actor, const class Texture& tex, Rectangle srcRect, Vector2 origin, Flip flip) const;
 
+	void addCircle(DrawCircleComponent* circle);
+	void removeCircle(DrawCircleComponent* circle);
+	void drawCircles();
+	
+
 	SDL_Renderer* toSDLRenderer() const { return SDLRenderer; }
 	void close();
 
 private:
 	SDL_Renderer* SDLRenderer = nullptr;
 	std::vector<SpriteComponent*> sprites;
+	std::vector<DrawCircleComponent*> circles;
 };

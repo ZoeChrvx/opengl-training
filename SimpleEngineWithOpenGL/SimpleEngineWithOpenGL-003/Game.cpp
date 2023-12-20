@@ -20,7 +20,7 @@ bool Game::initialize()
 void Game::load()
 {
 	ball = new Actor();
-	ballCircle = new DrawCircleComponent(ball, 50);
+	auto ballCircle = new DrawCircleComponent(ball, 50);
 	ball->setPosition(Vector2{ 100, 100 });
 
 	
@@ -78,7 +78,6 @@ void Game::render()
 {
 	renderer.beginDraw();
 	renderer.draw();
-	ballCircle->draw(renderer);
 	renderer.endDraw();
 }
 

@@ -3,6 +3,7 @@
 #include "Texture.h"
 #include "Maths.h"
 #include "SpriteComponent.h"
+#include "DrawCircleComponent.h"
 
 #include <SDL_image.h>
 
@@ -93,6 +94,24 @@ void Renderer::drawSprite(const Actor& actor, const Texture& tex, Rectangle srcR
 		SDL_FLIP_NONE);
 
 	delete srcSDL;
+}
+
+void Renderer::addCircle(DrawCircleComponent* circle)
+{
+	circles.push_back(circle);
+}
+
+void Renderer::removeCircle(DrawCircleComponent* circle)
+{
+	auto iter = std::find(begin(circles), end(circles), circle);
+	circles.erase(iter);
+}
+
+void Renderer::drawCircles()
+{
+	for (auto circle : circles) {
+		circle->draw(*this);
+	}
 }
 
 void Renderer::close()
