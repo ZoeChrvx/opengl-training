@@ -22,8 +22,6 @@ void Game::load()
 	ball = new Actor();
 	auto ballCircle = new DrawCircleComponent(ball, 50);
 	ball->setPosition(Vector2{ 100, 100 });
-
-	
 }
 
 void Game::processInput()

@@ -32,7 +32,7 @@ void DrawCircleComponent::drawCircle(Renderer& renderer) {
 	int32_t ty = 1;
 	int32_t error = (tx - diameter);
 
-	SDL_SetRenderDrawColor(SDLRenderer, 120, 120, 255, 255);
+	SDL_SetRenderDrawColor(SDLRenderer, 115, 26, 138, 255);
 
 	while (x >= y) {
 		SDL_RenderDrawPoint(SDLRenderer, centreX + x, centreY - y);
