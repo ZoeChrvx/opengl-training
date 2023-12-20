@@ -13,6 +13,7 @@ DrawCircleComponent::DrawCircleComponent(Actor* ownerP, int radiusP) :
 DrawCircleComponent::~DrawCircleComponent() {
 	owner.getGame().getRenderer().removeCircle(this);
 }
+
 void DrawCircleComponent::draw(Renderer& renderer) {
 	drawCircle(renderer);
 }

@@ -1,6 +1,10 @@
 #pragma once
 #include "Component.h"
 #include "Texture.h"
+#include "Renderer.h"
+
+class Renderer;
+
 
 class SpriteComponent : public Component
 {

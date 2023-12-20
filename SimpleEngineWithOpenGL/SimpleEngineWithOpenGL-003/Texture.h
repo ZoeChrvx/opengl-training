@@ -3,6 +3,8 @@
 #include "Renderer.h"
 using std::string;
 
+class Renderer;
+
 class Texture
 {
 public:

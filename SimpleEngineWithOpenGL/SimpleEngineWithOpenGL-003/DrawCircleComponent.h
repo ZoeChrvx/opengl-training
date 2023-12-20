@@ -7,7 +7,7 @@ class DrawCircleComponent : public Component
 public:
 	DrawCircleComponent(Actor* ownerP, int radiusP);
 
-	virtual ~DrawCircleComponent() = default;
+	virtual ~DrawCircleComponent();
 	DrawCircleComponent() = delete;
 	DrawCircleComponent(const DrawCircleComponent&) = delete;
 	DrawCircleComponent& operator =(const DrawCircleComponent&) = delete;

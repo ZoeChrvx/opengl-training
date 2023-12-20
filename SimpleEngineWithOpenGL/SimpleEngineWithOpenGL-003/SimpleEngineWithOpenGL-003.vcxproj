@@ -75,8 +75,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\Artfx\Programmation\C++\opengl-training\SDL\SDL2_image-2.0.5\include;D:\Artfx\Programmation\C++\opengl-training\SDL\SDL2_mixer-2.0.4\include;D:\Artfx\Programmation\C++\opengl-training\SDL\SDL2_ttf-2.0.15\include;D:\Artfx\Programmation\C++\opengl-training\SDL\SDL2-2.0.12\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Logiciel\FMOD Studio API Windows\api\lowlevel\lib;D:\Logiciel\FMOD Studio API Windows\api\studio\lib;D:\Artfx\Programmation\C++\opengl-training\SDL\glew-2.1.0\lib\Release\x64;D:\Artfx\Programmation\C++\opengl-training\SDL\SDL2_image-2.0.5\lib\x64;D:\Artfx\Programmation\C++\opengl-training\SDL\SDL2_mixer-2.0.4\lib\x64;D:\Artfx\Programmation\C++\opengl-training\SDL\SDL2_ttf-2.0.15\lib\x64;D:\Artfx\Programmation\C++\opengl-training\SDL\SDL2-2.0.12\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\zoe.chervaux\Documents\GitHub\opengl-training\SDL\SDL2_image-2.0.5\include;C:\Users\zoe.chervaux\Documents\GitHub\opengl-training\SDL\SDL2_mixer-2.0.4\include;C:\Users\zoe.chervaux\Documents\GitHub\opengl-training\SDL\SDL2_ttf-2.0.15\include;C:\Users\zoe.chervaux\Documents\GitHub\opengl-training\SDL\SDL2-2.0.12\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Logiciel\FMOD Studio API Windows\api\lowlevel\lib;D:\Logiciel\FMOD Studio API Windows\api\studio\lib;C:\Users\zoe.chervaux\Documents\GitHub\opengl-training\SDL\glew-2.1.0\lib\Release\x64;C:\Users\zoe.chervaux\Documents\GitHub\opengl-training\SDL\SDL2_image-2.0.5\lib\x64;C:\Users\zoe.chervaux\Documents\GitHub\opengl-training\SDL\SDL2_mixer-2.0.4\lib\x64;C:\Users\zoe.chervaux\Documents\GitHub\opengl-training\SDL\SDL2_ttf-2.0.15\lib\x64;C:\Users\zoe.chervaux\Documents\GitHub\opengl-training\SDL\SDL2-2.0.12\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

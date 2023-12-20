@@ -4,7 +4,6 @@
 #include "Window.h"
 #include "Vector2.h"
 #include "Actor.h"
-#include "SpriteComponent.h"
 
 class SpriteComponent;
 class DrawCircleComponent;
